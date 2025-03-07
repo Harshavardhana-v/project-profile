@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fce4ec;
+        }
+
+        h1, p {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .interest-button {
+            width: 150px;
+            height: 80px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px black;
+            border-radius: 10px;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .interest-button:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .selected {
+            border: 3px solid yellow;
+            box-shadow: 0px 0px 10px yellow;
+            transform: scale(1.1);
+        }
+
+        .continue-button, .maybe-button {
+            display: inline-block;
+            width: 200px;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .continue-button {
+            background-color: #8e24aa;
+            color: white;
+        }
+
+        .continue-button:hover {
+            background-color: #6a1b9a;
+            transform: scale(1.05);
+        }
+
+        .maybe-button {
+            background-color: #e1bee7;
+            color: black;
+        }
+
+        .maybe-button:hover {
+            background-color: #ce93d8;
+            transform: scale(1.05);
+        }
+
+        .active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Interest Selection</h1>
+    <p>Select the topics that interest you:</p>
+
+    <div class="buttons-container">
+        <button class="interest-button" style="background-image: url('https://tse3.mm.bing.net/th?id=OIP.Jeg5mspUmrRK74z4W1WEIQHaFj&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Kabaddi')">Kabaddi</button><br>
+        <button class="interest-button" style="background-image: url('https://tse3.mm.bing.net/th?id=OIP.nZa1rPTmyguT43i_DzvoqwHaHa&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Swimming')">Swimming</button><br>
+        <button class="interest-button" style="background-image: url('https://tse3.mm.bing.net/th?id=OIP._IcujGgm5Kys0FZCUrpvVgHaGf&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Hockey')">Hockey</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.mmv6HSnUzb1PKoQum7v8wwHaFj&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Cycling')">Cycling</button>
+        <button class="interest-button" style="background-image: url('https://tse2.mm.bing.net/th?id=OIP.8ZeyyZugpel59RTsXZQSbAHaFj&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Cricket')">Cricket</button>
+        <button class="interest-button" style="background-image: url('https://tse2.mm.bing.net/th?id=OIP.o7bZ6gk4S2KL73hm9dSL6gHaGI&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Athletics')">Athletics</button>
+        <button class="interest-button" style="background-image: url('https://tse3.mm.bing.net/th?id=OIP.p1OwV_cjaIUsOF_6e7luFQHaE9&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Football')">Football</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.snlibyC8YkLrpfQagLWdngHaE-&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Archery')">Archery</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.pCMcM-s2CYQN8iaL3PQHywHaFP&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Tennis')">Tennis</button>
+        <button class="interest-button" style="background-image: url('https://tse2.mm.bing.net/th?id=OIP.iv27aIFVDPIZs4STDtz9hgHaHa&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Formula 1')">Formula 1</button><br>
+        <button class="interest-button" style="background-image: url('https://tse2.mm.bing.net/th?id=OIP.NV3klwbxl8SUemjq5Y3TfQHaH0&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Badminton')">Badminton</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.Pt8yHVqZi2Hfi-Qz0E-LrwHaFj&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Gym')">Gym</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.tBClhm37OShjz1LGYXLwcAAAAA&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Wrestling')">Wrestling</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.ZkJP5JlXjYB3SwtgeSJYBgHaF4&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Golf')">Golf</button>
+        <button class="interest-button" style="background-image: url('https://tse3.mm.bing.net/th?id=OIP.oioAqqvfPMFPUIsEeHiHAAHaGc&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Basketball')">Basketball</button>
+        <button class="interest-button" style="background-image: url('https://tse2.mm.bing.net/th?id=OIP.w8w-ReL_oH7DijX96nexSwHaE3&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Rugby')">Rugby</button>
+        <button class="interest-button" style="background-image: url('https://tse4.mm.bing.net/th?id=OIP.FyeFO0Sr2JIp5B28v1QCBAHaDt&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Javelin')">Javelin</button>
+        <button class="interest-button" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.kxGFNvGgubyMlfT0pZnGzAHaEK&pid=Api&P=0&h=180');" onclick="toggleSelection(this, 'Others')">Others</button>
+    </div>
+
+    </div>
+
+    <br>
+
+    <a href="home1.html" class="continue-button" id="continueBtn">Continue</a>
+    <a href="home1.html" class="maybe-button" id="maybeBtn">Maybe Later</a>
+
+    <script>
+        let selectedInterests = [];
+let continueBtn = document.getElementById("continueBtn");
+let maybeBtn = document.getElementById("maybeBtn");
+
+function toggleSelection(button, interest) {
+    if (selectedInterests.includes(interest)) {
+        selectedInterests = selectedInterests.filter(i => i !== interest);
+        button.classList.remove("selected");
+    } else {
+        selectedInterests.push(interest);
+        button.classList.add("selected");
+    }
+    updateButtonsState();
+}
+
+function updateButtonsState() {
+    let hasSelection = selectedInterests.length > 0;
+    let queryParams = hasSelection ? "?interests=" + encodeURIComponent(selectedInterests.join(",")) : "";
+
+    continueBtn.classList.toggle("active", hasSelection);
+    maybeBtn.classList.add("active"); // "Maybe Later" should always be active
+
+    continueBtn.onclick = function(event) {
+        if (!hasSelection) {
+            event.preventDefault(); // Prevent navigation if no selection
+        } else {
+            window.location.href = "home1.html" + queryParams;
+        }
+    };
+
+    maybeBtn.onclick = function() {
+        window.location.href = "home1.html" + queryParams;
+    };
+}
+    </script>
+</body>
+</html>

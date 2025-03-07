@@ -1,0 +1,47 @@
+body {
+    background-color: #d8bcd8;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.logo {
+    width: 300px;
+    height: 250px;
+    margin-top: 30px;
+}
+
+.brand-name {
+    color: #8a2be2;
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.illustration {
+    width: 400px;
+    height: 320px;
+    margin: 20px 0;
+}
+
+.tagline {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+}
+
+.continue-btn {
+    background-color: #8a2be2;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: white;
+}
+.container text-center{
+    background-color: pink;
+}

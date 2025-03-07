@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AthletiX - Login/Signup</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="lo.png" alt="AthletiX Logo">
+            <h1>AthletiX</h1>
+        </div>
+        <div class="form-container">
+            <div class="toggle-buttons">
+                <button id="loginBtn" class="active" onclick="showLogin()">Log In</button>
+                <button id="signupBtn" onclick="showSignup()">Sign Up</button>
+            </div>
+
+            <div id="loginForm">
+                <h2>Log in</h2>
+                <input type="text" placeholder="Enter your email or username" required>
+                <input type="password" placeholder="Enter your password" required>
+                <a href="forgetPass.html" class="forgot-password">Forgot password?</a>
+                <a href="" class="submit-btn">Log in</a> <!-- Add the login target page in href -->
+                <p>Haven’t got an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+            </div>
+
+            <div id="signupForm" class="hidden">
+                <h2>Sign Up</h2>
+                <input type="text" placeholder="Enter your full name" required>
+                <input type="email" placeholder="Enter your email" required>
+                <input type="password" placeholder="Create a password" required>
+                <a href="index2.html" class="submit-btn">Sign Up</a> <!-- Add the signup target page in href -->
+                <p>Already have an account? <a href="#" onclick="showLogin()">Log in</a></p>
+            </div>
+        </div>
+
+        <p class="terms">By continuing, you agree to AthletiX <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <script src="script1.js"></script>
+</body>
+</html>

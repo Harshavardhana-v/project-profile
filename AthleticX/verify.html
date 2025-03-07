@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set New Password - AthletiX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f3e8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: rgb(255, 192, 224);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px; /* Slightly wider for better form layout */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4a148c;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .verify-btn {
+            background: #6a1b9a;
+            color: white;
+        }
+        .verify-btn:hover {
+            background: #4a148c;
+        }
+        .cancel-btn {
+            background: whitesmoke;
+            color: #6a1b9a;
+        }
+        .cancel-btn:hover {
+            background: #ad93d8;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .logo {
+            max-width: 160px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            height: 30px;
+            color: #6a1b9a;
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>AthletiX</h2>
+        <img class="logo" src="lo.png" alt="logo">
+        <h1>Set New Password</h1>
+
+        <p>Enter your new password:</p>
+        <input type="password" id="newPassword" placeholder="Enter new password">
+        
+        <p>Confirm new password:</p>
+        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+
+        <button class="verify-btn" onclick="setPassword()">Set Password</button>
+        <button class="cancel-btn">Cancel</button>
+        <p id="message" class="message"></p>
+    </div>
+
+    <script>
+        function setPassword() {
+            const newPassword = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const message = document.getElementById("message");
+
+            if (!newPassword || !confirmPassword) {
+                message.innerHTML = "❌ Please enter and confirm your password.";
+                message.style.color = "red";
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                message.innerHTML = "⚠️ Password must be at least 6 characters.";
+                message.style.color = "red";
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                message.innerHTML = "❌ Passwords do not match.";
+                message.style.color = "red";
+                return;
+            }
+
+            alert("✅ Password set successfully!");
+            window.location.href='home.html';
+        }
+    </script>
+
+</body>
+</html>

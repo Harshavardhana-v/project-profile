@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f3e8ff;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgb(255, 192, 224);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4a148c;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .verify-btn {
+            background: #6a1b9a;
+            color: white;
+        }
+        .verify-btn:hover {
+            background: #4a148c;
+        }
+        .cancel-btn {
+            background: whitesmoke;
+            color: #6a1b9a;
+        }
+        .cancel-btn:hover {
+            background: #ad93d8;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .logo {
+            max-width: 160px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #6a1b9a;
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>AthletiX</h2>
+        <img class="logo" src="lo.png" alt="logo">
+        <h1>Forgot Password?</h1>
+        <p>Enter your email to generate a verification code.</p>
+        <input type="email" id="email" placeholder="youremail@gmail.com">
+        <button class="verify-btn" onclick="generateCode()">Get Code</button>
+        
+        <p style="margin-top: 15px;">Enter the verification code:</p>
+        <input type="text" id="verificationCodeInput" placeholder="Enter 6-digit code" maxlength="6">
+        <button class="verify-btn" onclick="verifyCode()">Verify Code</button>
+
+        <button class="cancel-btn">Cancel</button>
+        <p id="message" class="message"></p>
+        
+    </div>
+
+    <script>
+        function generateCode() {
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message");
+
+            if (!email) {
+                message.innerHTML = "❌ Please enter an email.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Generate a 6-digit verification code
+            const verificationCode = Math.floor(100000 + Math.random() * 900000);
+            
+            // Show the code in a popup (for testing, in real-world, it should be emailed)
+            alert("Your verification code is: " + verificationCode);
+
+            // Store the code in localStorage (temporary storage)
+            localStorage.setItem("verificationCode", verificationCode);
+
+            message.innerHTML = "✅ Verification code generated! Check the popup.";
+            message.style.color = "green";
+        }
+
+        function verifyCode() {
+            const enteredCode = document.getElementById("verificationCodeInput").value;
+            const storedCode = localStorage.getItem("verificationCode");
+            const message = document.getElementById("message");
+
+            if (!enteredCode) {
+                alert("⚠️ Please enter the 6-digit code.");
+                return;
+            }
+
+            if (enteredCode === storedCode) {
+                alert("✅ Verification successful!");
+                
+                // Redirect to another HTML page (replace 'yourPage.html' with your target page)
+                window.location.href = 'http://127.0.0.1:5500/verify.html'; // Change this to your desired URL
+                
+            } else {
+                alert("❌ Incorrect verification code. Please try again.");
+            }
+        }
+    </script>
+
+</body>
+</html>

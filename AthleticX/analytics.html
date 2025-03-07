@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+    body {
+    background-color: #f5d0f4;
+}
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #9c6ade;
+    color: white;
+}
+.nav-link {
+    color: white;
+    padding: 10px;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: #f8b4ec;
+}
+#main-content {
+    width: calc(100% - 550px);
+}
+#right-sidebar {
+    width: 300px;
+    background: #9c6ade;
+}
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.btn-warning {
+    background-color: #4df6fc;
+    border: none;
+}
+body { background-color: #f5e1ff; }
+            .dashboard-container { padding: 20px; }
+            .card { border-radius: 10px; padding: 20px; }
+            .slider { width: 100%; }
+            .chart-container { height: 300px; }
+</style>
+<body>
+
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar" class="p-3" >
+        <div class="profile-section text-center">
+            <img src="image/profile.png" class="rounded-circle" width="80" alt="Profile">
+            <h4>KL Rahul</h4>
+        </div>
+        <nav class="nav flex-column">
+            <a href="powner.html" class="nav-link"><i class="fas fa-user"></i>&nbsp;&nbsp; Profile</a>
+            <a href="community.html" class="nav-link"><i class="fas fa-users"></i>&nbsp;&nbsp; Community</a>
+            <a href="useranalytics.html" class="nav-link"><i class="fas fa-chart-bar"></i>&nbsp;&nbsp; User Analytics</a>
+            <a href="messages.html" class="nav-link"><i class="fas fa-envelope"></i>&nbsp;&nbsp; Messages</a>
+            <a href="following.html" class="nav-link"><i class="fas fa-user-friends"></i>&nbsp;&nbsp; Following</a>
+            <a href="notifications.html" class="nav-link"><i class="fas fa-bell"></i>&nbsp;&nbsp; Notifications</a>
+            <a href="more.html" class="nav-link"><i class="fas fa-reorder"></i>&nbsp;&nbsp; More</a> 
+            <a href="home.html" class="nav-link active"><i class="fas fa-home"></i>&nbsp;&nbsp; Home</a>
+        </nav>
+        <hr>
+        <nav class="nav flex-column">
+            <a href="settings.html" class="nav-link"><i class="fas fa-cog"></i>&nbsp;&nbsp; Settings</a>
+            <a href="#" class="nav-link"><i class="fas fa-lock"></i>&nbsp;&nbsp; Security Data</a>
+            <a href="login&signup.html" class="nav-link text-dark"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Logout</a>
+        </nav>
+    </div>
+
+        <div id="main-content" class="flex-grow-1">
+            <nav class="navbar navbar-light bg-light p-3">
+                <div class="container-fluid">
+                    <img src="image/logo.png" width="40">
+                    <input type="text" class="form-control w-50" placeholder="Search for friends...">
+                    <div class="d-flex align-items-center">
+                        <img src="image/profile.png" class="rounded-circle" width="40" alt="User">
+                        <span class="ms-2">@Rahul_rcb </span><i class="fas fa-chevron-circle-down ms-1 "></i>
+                        <i class="fas fa-cog ms-4"></i> <i class="fas fa-bell ms-3"></i>&nbsp;&nbsp;
+                        <a href="gpt.html" ><img src="image/fox.png"class="rounded-circle" width="40"></a>
+                    </div>
+                </div>
+            </nav>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5><strong>PERSONALITY</strong></h5>
+                        <p>Patient <input type="range" class="slider" min="0" max="100"> Action-Oriented</p>
+                        <p>Reserved <input type="range" class="slider" min="0" max="100"> Outgoing</p>
+                        <p>Adventurous <input type="range" class="slider" min="0" max="100"> Predictable</p>
+                        <p>Analytical <input type="range" class="slider" min="0" max="100"> Creative</p>
+                        <p>Flexible <input type="range" class="slider" min="0" max="100"> Methodical</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="text-center">Total Quantity</h5>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-8">
+                    <div class="card">
+                        <h5>Streak</h5>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <h6>Earnings</h6>
+                        <h4 class="text-success">$7,048</h4>
+                        <canvas id="earningsChart"></canvas>
+                    </div>
+                    <div class="card">
+                        <h6>Spendings</h6>
+                        <h4 class="text-danger">$2,013</h4>
+                        <canvas id="spendingsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            const pieCtx = document.getElementById('pieChart').getContext('2d');
+            new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Job', 'Sleep', 'Social Media', 'Sports', 'Others'],
+                    datasets: [{ data: [30, 25, 15, 20, 10], backgroundColor: ['#E67E22', '#3498DB', '#8E44AD', '#F1C40F', '#2ECC71'] }]
+                }
+            });
+            
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                    datasets: [
+                        { label: 'Workout', data: [50, 90, 50, 90, 50], backgroundColor: '#E74C3C' },
+                        { label: 'Health', data: [75, 60, 75, 80, 75], backgroundColor: '#FF66B2' },
+                        { label: 'Sleep', data: [80, 100, 80, 100, 80], backgroundColor: '#3498DB' }
+                    ]
+                }
+            });
+            
+            const earningsCtx = document.getElementById('earningsChart').getContext('2d');
+            new Chart(earningsCtx, {
+                type: 'line',
+                data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'], datasets: [{ data: [5000, 5500, 6000, 6500, 7048], borderColor: 'green', fill: false }] }
+            });
+            
+            const spendingsCtx = document.getElementById('spendingsChart').getContext('2d');
+            new Chart(spendingsCtx, {
+                type: 'line',
+                data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'], datasets: [{ data: [2500, 2300, 2200, 2100, 2013], borderColor: 'red', fill: false }] }
+            });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar" class="p-3">
+        <!-- People You May Know -->
+        <div class="card p-3 mb-3">
+            <h4 style="color:#6512d1; text-align: center;">People you may know</h4>
+            <p><a href="pvisiter.html" class="nav-link text-dark"><img src="image/p1.png" class="rounded-circle" width="30" alt="Profile"><strong> Tony Stark</strong> - 6M+ Followers</a></p>
+            <p><a href="pvisiter.html" class="nav-link text-dark"><img src="image/p2.png" class="rounded-circle" width="30" alt="Profile"><strong> Bruce Banners</strong> - 3M+ Followers</a></p>
+            <p><a href="pvisiter.html" class="nav-link text-dark"><img src="image/p3.png" class="rounded-circle" width="30" alt="Profile"><strong> Natasha Romanoff</strong> - Tagged you in her 250th post</a></p>
+            <p><a href="pvisiter.html" class="nav-link text-dark"><img src="image/p4.png" class="rounded-circle" width="30" alt="Profile"><strong> Barton Clint</strong> - Liked your comment</a></p>
+        </div>
+        <!-- Boost Your Post -->
+        <div class="card p-3">
+            <h4 style="color:#6512d1; text-align: center;">Boost Your Post</h4>
+            <p> <a href="powner.html" class="nav-link text-dark"><strong>@Rahul_rcb</strong> “Alone we go fast, together we go far.” <img src="image/post.png" class="img-fluid rounded mt-2" alt="Nature"><i class="fas fa-heart"></i> 180k others liked your post</p></a>
+            <p><a href="powner.html" class="nav-link text-dark"><strong>@Rahul_rcb</strong> “Family by heart, teammates by choice.”<img src="image/post1.png" class="img-fluid rounded mt-2" alt="Nature"><i class="fas fa-heart"></i> 1.7M others liked your post</p></a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
