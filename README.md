@@ -1,7 +1,7 @@
  ## Hi guys 🙋‍♂️ ,I am Harshavardhana V 
 ### Web Developer | Ethical Hacker | Competitive programmer
 
-### 🐦‍🔥 *Skills*:JavaScript ,Nodejs ,CSS ,Python ,Reactjs ,C++ competitive programmer , Java, SQL & MYSQL database ,Linux(Ubuntu & kali).
+### 🐦‍🔥 ### *Skills*:JavaScript ,Nodejs ,CSS ,Python ,Reactjs ,C++ competitive programmer , Java, SQL & MYSQL database ,Linux(Ubuntu & kali).
 ### ⁂Projects 🌐 
 🗳️ : Online Voting System 
 🌍 :  World Tourism website 
